@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-link to="/users/add">Add user</router-link>
     <table>
       <thead>
         <tr>
