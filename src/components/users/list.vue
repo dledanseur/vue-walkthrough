@@ -8,9 +8,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>name</td>
-          <td>email</td>
+        <tr v-for="u in users" :key="u.email">
+          <td>{{u.name}}</td>
+          <td>{{u.email}}</td>
         </tr>
       </tbody>
     </table>
@@ -18,7 +18,20 @@
 </template>
 
 <script>
+import {mapActions, mapState} from 'vuex'
+
 export default {
-  name: "UserList"
+  name: "UserList",
+  methods: {
+    ...mapActions('users', ['listUsers'])
+  },
+  computed: {
+    ...mapState('users', {
+      'users': (state) => state.list
+    })
+  },
+  mounted: function() {
+    this.listUsers()
+  }
 }
 </script>
